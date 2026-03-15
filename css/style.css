@@ -138,7 +138,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
 }
 
 /* ── Layout ── */
-.wrap { display: flex; min-height: 100vh; }
+.wrap { display: block; min-height: 100vh; }
 
 /* ── Side Navigation — Mobile-First (full-width slide-in) ── */
 .snav {
@@ -152,13 +152,13 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
   padding: 2.5rem 1.2rem;
   z-index: 500;
   border-right: 1px solid rgba(201,168,76,.3);
-  transform: translateX(-100%);
+  transform: translateX(-100%) !important;
   transition: transform .38s var(--ease-out);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   will-change: transform;
 }
-.snav.open { transform: translateX(0); }
+.snav.open { transform: translateX(0) !important; }
 
 /* Dark overlay behind open nav */
 .snav::after {
@@ -207,19 +207,20 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
 }
 
 /* Main Content */
-.mc { margin-left: 0; flex: 1; width: 100%; }
+.mc { margin-left: 0 !important; width: 100% !important; display: block; }
 section { padding: var(--section-pad); }
 
 /* ── Desktop: fixed sidebar ── */
 @media (min-width: 900px) {
   .snav {
     width: 220px; max-width: none;
-    transform: translateX(0);
+    transform: translateX(0) !important;
     position: fixed;
   }
   .snav.open::after { display: none; }
   .hbg { display: none; }
-  .mc { margin-left: 220px; width: calc(100% - 220px); }
+  .wrap { display: flex; min-height: 100vh; }
+  .mc { margin-left: 220px !important; width: calc(100% - 220px) !important; }
 }
 
 /* ── Section Titles ── */
