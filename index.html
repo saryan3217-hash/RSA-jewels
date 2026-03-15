@@ -12,6 +12,7 @@
 <meta property="og:description" content="Premium gold, diamond & silver jewellery since 1978. Indore's most trusted jewellers.">
 <meta property="og:image"       content="https://images.unsplash.com/photo-1599643478524-fb66f4568e64?w=1200">
 <meta property="og:type"        content="website">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1599643478524-fb66f4568e64?q=60&w=1200" fetchpriority="high">
 <link rel="canonical" href="https://kanakshrijewellers.com/">
 
 <!-- Fonts -->
@@ -22,6 +23,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 <!-- Stylesheet -->
+
+<style>
+/* Critical: Above-the-fold styles to prevent FOUC */
+body{margin:0;background:#FAF6EE;font-family:'Montserrat',sans-serif;overflow-x:hidden}
+#loader{position:fixed;inset:0;background:#3A0A0A;z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#hero{height:100svh;min-height:560px;background:#3A0A0A;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.wrap{display:flex;min-height:100vh}
+.mc{margin-left:0;flex:1;width:100%}
+.snav{position:fixed;width:100vw;max-width:280px;height:100%;top:0;left:0;background:#3A0A0A;transform:translateX(-100%);z-index:500}
+.hbg{display:flex;position:fixed;top:12px;left:12px;z-index:600;background:#3A0A0A;border:1px solid #C9A84C;color:#C9A84C;width:46px;height:46px;border-radius:6px;align-items:center;justify-content:center;font-size:1.1rem}
+#cursor-o,#cursor-i{display:none}
+</style>
 <link rel="stylesheet" href="css/style.css">
 
 <!-- Google Analytics placeholder -->
@@ -140,7 +153,7 @@
 <div class="movo" id="modal">
   <div class="mbox">
     <div class="mgallery">
-      <img class="mimg" id="mi" src="" alt="">
+      <img loading="lazy" class="mimg" id="mi" src="" alt="">
       <button class="mzoom" id="mzoom" title="Zoom"><i class="fas fa-search-plus"></i></button>
     </div>
     <div class="mcon">
@@ -186,7 +199,7 @@
 
 <!-- ── Lightbox ── -->
 <div class="lightbox" id="lightbox">
-  <img id="lb-img" src="" alt="">
+  <img loading="lazy" id="lb-img" src="" alt="">
   <button class="lightbox-close"><i class="fas fa-times"></i></button>
 </div>
 
@@ -219,6 +232,7 @@
     </ul>
     <div class="nbot"><span class="nbot-g">💎</span>Since 1978</div>
   </nav>
+  <div class="snav-overlay" id="snav-overlay"></div>
 
   <main class="mc">
 
@@ -294,7 +308,7 @@
         <aside class="shfilt" id="shfilt">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:.8rem">
             <span class="ftt" style="margin:0;border:none;padding:0">Refine By</span>
-            <button id="fcls" style="display:none;background:none;border:none;color:var(--maroon);font-size:1.2rem;cursor:none"><i class="fas fa-times"></i></button>
+            <button id="fcls" style="display:none;background:none;border:none;color:var(--maroon);font-size:1.2rem;cursor:pointer"><i class="fas fa-times"></i></button>
           </div>
           <div class="fg">
             <span class="fgl">Metal</span>
@@ -368,7 +382,7 @@
       <div class="sdiv"><span class="sdg">◆</span></div>
       <div class="about-grid">
         <div class="about-img-wrap fi">
-          <img class="about-img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&auto=format&fit=crop" alt="Our Craftsmanship">
+          <img loading="lazy" class="about-img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&auto=format&fit=crop" alt="Our Craftsmanship">
           <div class="about-badge"><span>46</span><span>Years</span></div>
         </div>
         <div>
@@ -486,5 +500,17 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="js/data.js"></script>
 <script type="module" src="js/app.js"></script>
+
+<script>
+// Mobile nav overlay click-to-close
+document.getElementById('snav-overlay')?.addEventListener('click', () => {
+  document.getElementById('snav')?.classList.remove('open');
+  document.getElementById('snav-overlay')?.classList.remove('open');
+});
+// Ensure touch cursor is auto
+if ('ontouchstart' in window) {
+  document.body.style.cursor = 'auto';
+}
+</script>
 </body>
 </html>
