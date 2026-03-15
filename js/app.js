@@ -66,8 +66,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
    CUSTOM CURSOR
    ============================================================ */
 (()=>{
+  // Skip custom cursor on touch/mobile devices
+  const isTouch = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
   const o = $('cursor-o'), i = $('cursor-i');
-  if (!o) return;
+  if (!o || isTouch()) return;
   let mx=0, my=0, ox=0, oy=0;
   document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; i.style.left=mx+'px'; i.style.top=my+'px'; });
   (function loop(){ ox+=(mx-ox)*.12; oy+=(my-oy)*.12; o.style.left=ox+'px'; o.style.top=oy+'px'; requestAnimationFrame(loop); })();
@@ -98,6 +100,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 (()=>{
   const bgEl = document.querySelector('.hbg-img');
   if (!bgEl) return;
+  // Skip parallax on mobile/touch for performance
+  if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   window.addEventListener('scroll', () => {
     const pct = Math.min(window.scrollY / window.innerHeight, 1);
     bgEl.style.transform = `translateY(${pct * 80}px)`;
@@ -110,7 +114,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 (()=>{
   const cont = document.querySelector('.hparticles');
   if (!cont) return;
-  for (let i=0; i<20; i++) {
+  // Reduce particle count on mobile for performance
+  const count = window.innerWidth < 768 ? 8 : 20;
+  for (let i=0; i<count; i++) {
     const p = document.createElement('div');
     p.className = 'hparticle';
     p.style.left = Math.random()*100+'%';
@@ -126,7 +132,19 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
    ============================================================ */
 (()=>{
   const nav = $('snav'), hb = $('hbg');
-  hb?.addEventListener('click', () => nav.classList.toggle('open'));
+  const overlay = $('snav-overlay');
+  function toggleNav(open) {
+    nav.classList.toggle('open', open);
+    if (overlay) overlay.classList.toggle('open', open);
+    // Auto-close nav when a link is tapped on mobile
+  }
+  hb?.addEventListener('click', () => toggleNav(!nav.classList.contains('open')));
+  // Close nav on link click (mobile)
+  document.querySelectorAll('.nl').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.innerWidth < 900) toggleNav(false);
+    });
+  });
   const secs  = [...document.querySelectorAll('section[id]')];
   const links = document.querySelectorAll('.nl');
   const obs = new IntersectionObserver(entries => {
