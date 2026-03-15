@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSA Jewellers | Buy. Wear. Invest.</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="RSA Jewellers — premium gold, diamond and silver jewellery since 1978. Shop bridal sets, rings, necklaces, bangles and more. Located in Sarafa Bazaar, Indore.">
+<meta name="keywords"    content="jewellers indore, gold jewellery, diamond rings, bridal set, RSA, Sarafa Bazaar">
+<meta property="og:title"       content="RSA Jewellers | Buy. Wear. Invest.">
+<meta property="og:description" content="Premium gold, diamond & silver jewellery since 1978. Indore's most trusted jewellers.">
+<meta property="og:image"       content="https://images.unsplash.com/photo-1599643478524-fb66f4568e64?w=1200">
+<meta property="og:type"        content="website">
+<link rel="canonical" href="https://kanakshrijewellers.com/">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Google Analytics placeholder -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+
+<!-- Facebook Pixel placeholder -->
+<!-- Paste Meta Pixel base code here -->
+
+<!-- Razorpay / Cashfree / Stripe SDK placeholder -->
+<!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
+
+<!-- CDN Image Delivery hint (Cloudinary / imgix) -->
+<!-- Replace img src with CDN URL for production -->
+</head>
+<body>
+
+<!-- ── Page Transition Overlay ── -->
+<div id="page-transition"></div>
+
+<!-- ── Loader ── -->
+<div id="loader">
+  <div class="ld">🪔</div>
+  <div class="ll">RSA</div>
+  <div class="ls">Jewellers · Est. 1978</div>
+  <div class="lb"></div>
+</div>
+
+<!-- ── Custom Cursor ── -->
+<div id="cursor-o"></div>
+<div id="cursor-i"></div>
+
+<!-- ── Hamburger (mobile) ── -->
+<button class="hbg" id="hbg"><i class="fas fa-bars"></i></button>
+
+<!-- ── WhatsApp Float ── -->
+<a href="https://wa.me/919999999999?text=Namaste!" class="wa-float" target="_blank" title="Chat on WhatsApp" id="wa-catalogue">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wa-tooltip">Chat with us</span>
+</a>
+
+<!-- ── Social Float Bar ── -->
+<div class="fsoc">
+  <a href="https://wa.me/919999999999" class="sb" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="#" class="sb" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="sb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="tel:+919999999999" class="sb" title="Call"><i class="fas fa-phone-alt"></i></a>
+</div>
+
+<!-- ── Cart Trigger ── -->
+<button class="cart-trigger" id="cart-trigger">
+  <i class="fas fa-shopping-bag"></i>
+  <span class="cart-count" id="cart-count">0</span>
+</button>
+
+<!-- ── Cart Drawer ── -->
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-title">Your Cart (<span id="cart-count-nav">0</span>)</div>
+    <button class="cart-close" id="cart-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cart-total-val">₹0</span>
+    </div>
+    <div class="cart-ship" id="cart-ship">Free shipping on orders above ₹10,000</div>
+    <button class="btn-p" style="width:100%" id="cart-checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- ── Checkout Overlay ── -->
+<div class="checkout-overlay" id="checkout-overlay">
+  <div class="checkout-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <div class="checkout-title">Checkout</div>
+      <button id="co-close" style="background:none;border:none;font-size:1.2rem;color:#888;cursor:pointer"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="checkout-section">
+      <span class="cs-label">Shipping Information</span>
+      <input class="checkout-input" id="co-name"  type="text"  placeholder="Full Name">
+      <input class="checkout-input" id="co-phone" type="tel"   placeholder="Phone Number">
+      <input class="checkout-input" id="co-email" type="email" placeholder="Email Address">
+      <input class="checkout-input" id="co-addr"  type="text"  placeholder="Address">
+      <input class="checkout-input" id="co-city"  type="text"  placeholder="City">
+    </div>
+
+    <div class="checkout-section">
+      <span class="cs-label">Payment Method</span>
+      <div class="payment-methods">
+        <button class="pay-method active" data-method="UPI"><i class="fas fa-mobile-alt"></i>UPI / QR</button>
+        <button class="pay-method" data-method="Card"><i class="fas fa-credit-card"></i>Credit/Debit Card</button>
+        <button class="pay-method" data-method="Net Banking"><i class="fas fa-university"></i>Net Banking</button>
+        <button class="pay-method" data-method="Wallet"><i class="fas fa-wallet"></i>Wallet</button>
+      </div>
+      <p style="font-size:.65rem;color:#888;margin-top:.8rem;text-align:center">
+        Powered by Razorpay / Cashfree — integration ready<br>
+        <a href="https://razorpay.com" target="_blank" style="color:var(--gold);text-decoration:none">Connect Razorpay →</a>
+      </p>
+    </div>
+
+    <div class="checkout-section">
+      <span class="cs-label">Order Summary</span>
+      <div class="checkout-summary">
+        <div id="co-items"></div>
+        <div class="cs-row total"><span>Total</span><span id="co-total"></span></div>
+      </div>
+    </div>
+
+    <button class="btn-p" style="width:100%" id="co-place-order"><i class="fab fa-whatsapp" style="margin-right:6px"></i>Place Order via WhatsApp</button>
+  </div>
+</div>
+
+<!-- ── Product Modal ── -->
+<div class="movo" id="modal">
+  <div class="mbox">
+    <div class="mgallery">
+      <img class="mimg" id="mi" src="" alt="">
+      <button class="mzoom" id="mzoom" title="Zoom"><i class="fas fa-search-plus"></i></button>
+    </div>
+    <div class="mcon">
+      <button class="mcls" id="mcls"><i class="fas fa-times"></i></button>
+      <div class="mmet" id="mm"></div>
+      <div class="mnam" id="mn"></div>
+      <div class="mpri" id="mp"></div>
+
+      <!-- Variants -->
+      <div class="mvariants">
+        <span class="mv-label">Size / Variant</span>
+        <div class="mv-opts" id="mvar-opts"></div>
+      </div>
+
+      <div class="msps">
+        <div><div class="slb">Weight</div><div class="svl" id="mw"></div></div>
+        <div><div class="slb">Purity</div><div class="svl" id="mpu"></div></div>
+        <div><div class="slb">Stone</div><div class="svl" id="ms"></div></div>
+        <div><div class="slb">Type</div><div class="svl" id="mt"></div></div>
+      </div>
+
+      <button class="mwl-btn" id="mwl-btn"><i class="far fa-heart"></i>&nbsp;Save to Wishlist</button>
+
+      <div class="mcta">
+        <button class="btn-p" id="madd"><i class="fas fa-shopping-bag" style="margin-right:6px"></i>Add to Cart</button>
+        <button class="btn-p" id="menq" style="background:var(--maroon)"><i class="fab fa-whatsapp" style="margin-right:6px"></i>Enquire</button>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="mrelated">
+      <div class="mrel-title">◆ You May Also Like</div>
+      <div class="mrel-grid" id="mrel-grid"></div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="mreviews">
+      <div class="mrev-title">◆ Customer Reviews</div>
+      <div id="mrev-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Lightbox ── -->
+<div class="lightbox" id="lightbox">
+  <img id="lb-img" src="" alt="">
+  <button class="lightbox-close"><i class="fas fa-times"></i></button>
+</div>
+
+<!-- ── Toast ── -->
+<div class="toast" id="toast"></div>
+
+<!-- ============================================================
+     MAIN LAYOUT
+     ============================================================ -->
+<div class="wrap">
+
+  <!-- ── Side Navigation ── -->
+  <nav class="snav" id="snav">
+    <div class="nlogo">
+      <div class="nlm">KANAK<br>SHRI</div>
+      <div class="nld"></div>
+      <div class="nls">Jewellers</div>
+    </div>
+    <ul class="nmenu">
+      <li><a href="#hero"         class="nl active"><i class="fas fa-home"></i>Home</a></li>
+      <li><a href="#featured"     class="nl"><i class="fas fa-star"></i>Featured</a></li>
+      <li><a href="#categories"   class="nl"><i class="fas fa-gem"></i>Collections</a></li>
+      <li><a href="#shop"         class="nl"><i class="fas fa-shopping-bag"></i>Shop</a></li>
+      <li><a href="#gallery"      class="nl"><i class="fas fa-camera"></i>Gallery</a></li>
+      <li><a href="#bridal"       class="nl"><i class="fas fa-ring"></i>Bridal</a></li>
+      <li><a href="#about"        class="nl"><i class="fas fa-landmark"></i>Our Story</a></li>
+      <li><a href="#testimonials" class="nl"><i class="fas fa-quote-left"></i>Reviews</a></li>
+      <li><a href="#instagram"    class="nl"><i class="fab fa-instagram"></i>Instagram</a></li>
+      <li><a href="#contact"      class="nl"><i class="fas fa-map-marker-alt"></i>Contact</a></li>
+    </ul>
+    <div class="nbot"><span class="nbot-g">💎</span>Since 1978</div>
+  </nav>
+
+  <main class="mc">
+
+    <!-- ══════════════════════════════════════
+         SECTION 1 — HERO
+    ══════════════════════════════════════ -->
+    <section id="hero">
+      <div class="hbg-img"></div>
+      <div class="hov"></div>
+      <div class="hparticles"></div>
+      <div class="hcon">
+        <div class="hnam">🙏</div>
+        <div class="hwb">स्वागतम् · Welcome to RSA</div>
+        <div class="htw"><span id="ht"></span><span class="tcur"></span></div>
+        <div class="htag">Gold &nbsp;·&nbsp; Diamonds &nbsp;·&nbsp; Silver &nbsp;·&nbsp; Crafted for Generations</div>
+        <div class="hcta">
+          <a href="#featured" class="btn-p ripple-wrap">Explore Collections</a>
+          <a href="#contact"  class="btn-o">Visit Our Store</a>
+        </div>
+      </div>
+      <div class="hsh"><div class="sline"></div>Scroll</div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 2 — FEATURED
+    ══════════════════════════════════════ -->
+    <section id="featured">
+      <div class="ey">Handpicked Brilliance</div>
+      <h2 class="st">Highly Rated Designs</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="swiper swiper-featured">
+        <div class="swiper-wrapper" id="fs"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- ── New Arrivals strip ── -->
+    <div class="nas">
+      <div class="nast">✦ New Arrivals</div>
+      <div class="nasc" id="nasc"></div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SECTION 3 — CATEGORIES
+    ══════════════════════════════════════ -->
+    <section id="categories">
+      <div class="ey">Curated for You</div>
+      <h2 class="st">Our Collections</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="ctabs">
+        <button class="ctab active" data-cat="gold">Gold Jewellery</button>
+        <button class="ctab"        data-cat="diamond">Diamond Jewellery</button>
+        <button class="ctab"        data-cat="silver">Silver Jewellery</button>
+      </div>
+      <div class="cgrid" id="cgrid"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 4 — SHOP
+    ══════════════════════════════════════ -->
+    <section id="shop">
+      <div class="ey">Explore &amp; Discover</div>
+      <h2 class="st">Shop Jewellery</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1.5rem">
+        <div class="srch" style="flex:1;min-width:220px;max-width:400px;margin-bottom:0">
+          <i class="fas fa-search"></i>
+          <input type="text" id="si" placeholder="Search jewellery…">
+        </div>
+        <button class="ftoggle" id="ftog"><i class="fas fa-sliders-h"></i>&nbsp;Filters</button>
+      </div>
+      <div class="shlayout">
+        <aside class="shfilt" id="shfilt">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:.8rem">
+            <span class="ftt" style="margin:0;border:none;padding:0">Refine By</span>
+            <button id="fcls" style="display:none;background:none;border:none;color:var(--maroon);font-size:1.2rem;cursor:none"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="fg">
+            <span class="fgl">Metal</span>
+            <label class="fo"><input type="checkbox" data-f="metal" value="gold"><label>Gold</label></label>
+            <label class="fo"><input type="checkbox" data-f="metal" value="diamond"><label>Diamond</label></label>
+            <label class="fo"><input type="checkbox" data-f="metal" value="silver"><label>Silver</label></label>
+          </div>
+          <div class="fg">
+            <span class="fgl">Type</span>
+            <label class="fo"><input type="checkbox" data-f="type" value="necklace"><label>Necklace</label></label>
+            <label class="fo"><input type="checkbox" data-f="type" value="ring"><label>Ring</label></label>
+            <label class="fo"><input type="checkbox" data-f="type" value="earring"><label>Earrings</label></label>
+            <label class="fo"><input type="checkbox" data-f="type" value="bangle"><label>Bangles</label></label>
+            <label class="fo"><input type="checkbox" data-f="type" value="bracelet"><label>Bracelet</label></label>
+            <label class="fo"><input type="checkbox" data-f="type" value="anklet"><label>Anklet</label></label>
+            <label class="fo"><input type="checkbox" data-f="type" value="pendant"><label>Pendant</label></label>
+            <label class="fo"><input type="checkbox" data-f="type" value="chain"><label>Chain</label></label>
+          </div>
+          <div class="fg">
+            <span class="fgl">Max Budget</span>
+            <input type="range" class="psl" id="psl" min="1000" max="500000" step="1000" value="500000">
+            <div class="prd"><span>₹1,000</span><span id="pdisp">₹5,00,000</span></div>
+          </div>
+        </aside>
+        <div class="shm"><div class="pgrid" id="pgrid"></div></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 5 — GALLERY
+    ══════════════════════════════════════ -->
+    <section id="gallery">
+      <div class="ey">Behind the Craft</div>
+      <h2 class="st">Jewellery Gallery</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="gal-grid" id="gal-grid"></div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <a href="#instagram" class="btn-o"><i class="fab fa-instagram" style="margin-right:.5rem"></i>Follow on Instagram</a>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 6 — BRIDAL
+    ══════════════════════════════════════ -->
+    <section id="bridal">
+      <div class="bridal-bg"></div>
+      <div class="ey">Your Most Special Day</div>
+      <h2 class="st">Bridal Collection</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="bridal-content">
+        <div>
+          <p class="bridal-text">Every bride deserves jewellery that tells her story. At RSA, we offer <strong>personalised bridal consultations</strong>, custom weight adjustments, and heritage-inspired designs crafted by master artisans.</p>
+          <p class="bridal-text">Our bridal sets are available in <strong>22K & 18K gold</strong>, adorned with uncut diamonds, Polki, Kundan, and precious stones — designed to last generations.</p>
+          <a href="https://wa.me/919999999999?text=Namaste! I would like to book a bridal consultation." target="_blank" class="btn-p ripple-wrap" style="margin-top:1rem"><i class="fas fa-ring" style="margin-right:.5rem"></i>Book Bridal Consultation</a>
+        </div>
+        <div class="bridal-cards">
+          <div class="bridal-card fi"><i class="fas fa-gem"></i><h4>Custom Design</h4><p>Design your dream jewellery with our in-house craftsmen.</p></div>
+          <div class="bridal-card fi"><i class="fas fa-balance-scale"></i><h4>Gold Rate Today</h4><p>Transparent pricing. BIS hallmark guaranteed on every piece.</p></div>
+          <div class="bridal-card fi"><i class="fas fa-truck"></i><h4>Home Delivery</h4><p>Insured delivery across India. Free shipping over ₹10,000.</p></div>
+          <div class="bridal-card fi"><i class="fas fa-headset"></i><h4>24/7 WhatsApp</h4><p>We're available on WhatsApp for all your queries, always.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 7 — ABOUT / BRAND STORY
+    ══════════════════════════════════════ -->
+    <section id="about">
+      <div class="ey">Our Heritage</div>
+      <h2 class="st">The RSA Story</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="about-grid">
+        <div class="about-img-wrap fi">
+          <img class="about-img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&auto=format&fit=crop" alt="Our Craftsmanship">
+          <div class="about-badge"><span>46</span><span>Years</span></div>
+        </div>
+        <div>
+          <p class="about-text fi">Founded in <strong>1978</strong> by Shri Rameshwar Lal in the heart of Indore's legendary Sarafa Bazaar, RSA Jewellers has been synonymous with <strong>purity, trust, and timeless beauty</strong> for over four decades.</p>
+          <p class="about-text fi">Every piece that leaves our workshop carries the weight of tradition and the shine of modernity — BIS hallmarked, ethically sourced, and meticulously crafted by artisans who have inherited their skills through generations.</p>
+          <p class="about-text fi">From a <strong>bridal necklace to a simple silver anklet</strong>, we bring the same love and attention to every creation — because jewellery is not just an ornament, it is a memory.</p>
+          <!-- Heritage Timeline -->
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 8 — TESTIMONIALS
+    ══════════════════════════════════════ -->
+    <section id="testimonials">
+      <div class="ey">Our Happy Customers</div>
+      <h2 class="st">What They Say</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="test-grid" id="test-grid"></div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 9 — INSTAGRAM
+    ══════════════════════════════════════ -->
+    <section id="instagram">
+      <div class="ey">Follow Our Journey</div>
+      <h2 class="st">@kanakshrijewellers</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="insta-grid" id="insta-grid"></div>
+      <div style="text-align:center;margin-top:2rem">
+        <a href="https://instagram.com" target="_blank" class="btn-o"><i class="fab fa-instagram" style="margin-right:.5rem"></i>Follow on Instagram</a>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SECTION 10 — CONTACT
+    ══════════════════════════════════════ -->
+    <section id="contact">
+      <div class="ey">Find Us</div>
+      <h2 class="st">Visit Our Store</h2>
+      <div class="sdiv"><span class="sdg">◆</span></div>
+      <div class="cgr">
+        <div class="cib">
+          <div class="cdet fi">
+            <div class="cion"><i class="fas fa-map-marker-alt"></i></div>
+            <div><span class="ctl">Address</span><div class="ctv">Shop No. 12, Jewellers' Market,<br>Sarafa Bazaar, Indore – 452001<br>Madhya Pradesh, India</div></div>
+          </div>
+          <div class="cdet fi">
+            <div class="cion"><i class="fas fa-phone-alt"></i></div>
+            <div><span class="ctl">Phone &amp; WhatsApp</span><div class="ctv">+91 99999 99999<br>+91 88888 88888</div></div>
+          </div>
+          <div class="cdet fi">
+            <div class="cion"><i class="fas fa-clock"></i></div>
+            <div>
+              <span class="ctl">Opening Hours</span>
+              <div class="hgr">
+                <div class="hrow"><span>Mon – Sat</span><span>10:00 – 20:00</span></div>
+                <div class="hrow"><span>Sunday</span><span>11:00 – 18:00</span></div>
+                <div class="hrow"><span>Holidays</span><span>By Appt.</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cdet fi">
+            <div class="cion"><i class="fas fa-envelope"></i></div>
+            <div><span class="ctl">Email</span><div class="ctv"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e881868e87a883898689839b809a81828d9f8d84848d9a9bc68b8785">[email&#160;protected]</a></div></div>
+          </div>
+          <a href="https://wa.me/919999999999?text=Namaste!" class="wabtn" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+
+          <!-- Appointment Booking -->
+          <div class="appt-form fi">
+            <h4><i class="fas fa-calendar-alt" style="margin-right:.5rem"></i>Book an Appointment</h4>
+            <input class="appt-input" id="appt-name"  type="text"   placeholder="Your Name">
+            <input class="appt-input" id="appt-phone" type="tel"    placeholder="Phone Number">
+            <input class="appt-input" id="appt-date"  type="date">
+            <select class="appt-input" id="appt-type">
+              <option value="General Visit">General Visit</option>
+              <option value="Bridal Consultation">Bridal Consultation</option>
+              <option value="Custom Design">Custom Design</option>
+              <option value="Repair / Service">Repair / Service</option>
+            </select>
+            <button class="btn-p" id="appt-submit" style="width:100%"><i class="fab fa-whatsapp" style="margin-right:.5rem"></i>Book Appointment</button>
+          </div>
+        </div>
+
+        <!-- Google Map -->
+        <div class="mapw fi">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117898.73!2d75.74900!3d22.72400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fcad1b410ddb%3A0x96ec4da356240f4!2sSarafa%20Bazaar%2C%20Indore!5e0!3m2!1sen!2sin!4v1700000000000"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <div class="flogo">RSA JEWELLERS</div>
+      <div class="fcp">© 2024 RSA Jewellers. All Rights Reserved.</div>
+      <div class="flinks">
+        <a href="#hero">Home</a>
+        <a href="#featured">Featured</a>
+        <a href="#categories">Collections</a>
+        <a href="#shop">Shop</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a href="admin.html" target="_blank">Admin</a>
+      </div>
+    </footer>
+
+  </main>
+</div><!-- /.wrap -->
+
+<!-- ── Scripts ── -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/data.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
