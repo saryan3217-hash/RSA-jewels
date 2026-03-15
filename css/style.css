@@ -369,7 +369,8 @@ section { padding: var(--section-pad); }
 
 /* ── Shop / Products ── */
 #shop { background:var(--cream); }
-.shlayout { display:flex; gap:2rem; }
+.shlayout { display:flex; flex-direction:column; gap:2rem; }
+@media (min-width: 900px) { .shlayout { flex-direction:row; } }
 .shfilt {
   width:220px; flex-shrink:0; position:sticky; top:2rem; align-self:flex-start;
   background:white; border-radius:4px; padding:1.5rem;
